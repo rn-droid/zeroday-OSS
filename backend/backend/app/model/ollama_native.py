@@ -79,18 +79,23 @@ class OllamaNativeProvider(LLMProvider):
                 f"Context usage exceeded limit: {total_tokens} >= {CONTEXT_LIMIT} tokens"
             )
 
-    def _execute_chat_request(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+    def _execute_chat_request(
+        self,
+        payload: Dict[str, Any],
+        timeout: Optional[float] = None,
+    ) -> Dict[str, Any]:
         """Send chat request to Ollama with strict payload constraints."""
         # CRITICAL constraint: never include tools key
         if "tools" in payload:
             del payload["tools"]
         assert "tools" not in payload, "CRITICAL: 'tools' key must never be included in Ollama payload"
 
+        req_timeout = timeout if timeout is not None else self.timeout
         try:
             resp = requests.post(
                 f"{self.base_url}/api/chat",
                 json=payload,
-                timeout=self.timeout,
+                timeout=req_timeout,
             )
         except requests.RequestException as exc:
             raise ErrorProcessing(f"Failed to communicate with Ollama: {exc}") from exc
@@ -113,6 +118,7 @@ class OllamaNativeProvider(LLMProvider):
         system_prompt: str,
         user_prompt: str,
         response_schema: Type[T],
+        timeout: Optional[float] = None,
     ) -> T:
         """
         Generate structured output validated against response_schema.
@@ -139,7 +145,7 @@ class OllamaNativeProvider(LLMProvider):
         }
 
         # Attempt 1
-        data = self._execute_chat_request(payload)
+        data = self._execute_chat_request(payload, timeout=timeout)
         content = data.get("message", {}).get("content", "")
 
         last_error = ""
@@ -175,7 +181,7 @@ class OllamaNativeProvider(LLMProvider):
             },
         }
 
-        retry_data = self._execute_chat_request(retry_payload)
+        retry_data = self._execute_chat_request(retry_payload, timeout=timeout)
         retry_content = retry_data.get("message", {}).get("content", "")
 
         try:

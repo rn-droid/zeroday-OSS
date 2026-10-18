@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Type, TypeVar
+from typing import Optional, Type, TypeVar
 from pydantic import BaseModel
 
 T = TypeVar("T", bound=BaseModel)
@@ -25,5 +25,7 @@ class LLMProvider(ABC):
         system_prompt: str,
         user_prompt: str,
         response_schema: Type[T],
+        timeout: Optional[float] = None,
     ) -> T:
         """Generate structured output validated against response_schema."""
+

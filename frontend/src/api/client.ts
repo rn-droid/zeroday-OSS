@@ -23,7 +23,7 @@ import type {
   DeletionResponse,
 } from './contracts';
 
-const REQUEST_TIMEOUT_MS = 60_000; // 60 s — generous for slow local model
+const REQUEST_TIMEOUT_MS = 120_000; // 120 s — generous for slow local model
 
 /** Called when a 401 is received — caller should clear session state. */
 type OnSessionExpired = () => void;

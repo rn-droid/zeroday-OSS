@@ -170,7 +170,7 @@ def _build_reference_context(
     return "\n".join(lines)
 
 
-def _get_full_document_text(con: sqlite3.Connection, max_chars: int = 80_000) -> str:
+def _get_full_document_text(con: sqlite3.Connection, max_chars: int = 16_000) -> str:
     """
     Fetch all page text from the SQLite store, ordered by page number.
     Caps at max_chars to stay within Gemma's context window.
@@ -311,8 +311,7 @@ class BoundedRuntime:
 
                 user_prompt = (
                     f"Question: Please provide a clear, comprehensive summary of this agreement.\n\n"
-                    f"Retrieved Key Provisions:\n{evidence_block}\n\n"
-                    f"Full Agreement Text:\n{full_doc_text}"
+                    f"Retrieved Key Provisions:\n{evidence_block}"
                 )
 
                 self.gemma_calls += 1
@@ -321,6 +320,7 @@ class BoundedRuntime:
                         system_prompt=system_prompt,
                         user_prompt=user_prompt,
                         response_schema=ModelAnswer,
+                        timeout=18.0,
                     )
                 except Exception as exc:
                     logger.warning("Local LLM provider error (%s); falling back to extractive summary.", exc)
