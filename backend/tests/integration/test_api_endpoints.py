@@ -110,7 +110,17 @@ def test_api_full_lifecycle(tmp_path: Path):
         gov_claims = " ".join(claim["text"] for claim in gov_answer["claims"])
         assert "Maharashtra" in gov_quotes or "arbitration" in gov_quotes or "Maharashtra" in gov_claims
 
-        # 8. Test Ask Endpoint: Limitation / Verdict Scanner
+        # 8. Test Ask Endpoint: Document Summary
+        sum_payload = {"question": "summarise"}
+        sum_res = client.post(f"/api/documents/{doc_id}/ask", headers=headers, json=sum_payload)
+        assert sum_res.status_code == 200, sum_res.text
+        sum_answer = sum_res.json()
+        assert sum_answer["status"] == "ANSWERED"
+        assert sum_answer["legal_verdict"] is None
+        assert "Executive Summary" in sum_answer["answer"]
+        assert len(sum_answer["claims"]) > 0
+
+        # 9. Test Ask Endpoint: Limitation / Verdict Scanner
         verdict_payload = {
             "question": "Is this penalty clause legally valid and enforceable in court?"
         }

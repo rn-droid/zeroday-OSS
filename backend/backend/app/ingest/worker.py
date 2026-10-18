@@ -252,23 +252,26 @@ async def _run_parser(
             else str(_PACKAGE_ROOT)
         )
 
-        proc = await asyncio.create_subprocess_exec(
-            sys.executable,
-            "-m",
-            "backend.app.ingest.parser",
-            stdin=asyncio.subprocess.PIPE,
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-            cwd=str(_PACKAGE_ROOT),
-            env=child_env,
-        )
-        try:
-            stdout, stderr = await asyncio.wait_for(
-                proc.communicate(input=input_bytes),
-                timeout=settings.parser_timeout_seconds,
+        def _exec_sync() -> tuple[bytes, bytes, int]:
+            proc = subprocess.Popen(
+                [sys.executable, "-m", "backend.app.ingest.parser"],
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=str(_PACKAGE_ROOT),
+                env=child_env,
             )
-        except asyncio.TimeoutError:
-            proc.kill()
+            try:
+                out, err = proc.communicate(input=input_bytes, timeout=settings.parser_timeout_seconds)
+                return out, err, proc.returncode
+            except subprocess.TimeoutExpired:
+                proc.kill()
+                proc.communicate()
+                raise
+
+        try:
+            stdout, stderr, returncode = await asyncio.to_thread(_exec_sync)
+        except subprocess.TimeoutExpired:
             raise ValueError(
                 f"Document parsing timed out after {settings.parser_timeout_seconds}s. "
                 "The file may be too complex or too large."
@@ -280,7 +283,7 @@ async def _run_parser(
     if len(stdout) > settings.parser_output_cap_bytes:
         raise ValueError("Parser output exceeded the maximum allowed size.")
 
-    if proc.returncode != 0:
+    if returncode != 0:
         # Log stderr at debug level only (may contain internal info).
         logger.debug("Parser process stderr: %s", stderr.decode(errors="replace")[:512])
         raise ValueError(
