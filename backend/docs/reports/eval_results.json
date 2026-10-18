@@ -1,0 +1,1327 @@
+{
+  "benchmark": "CUAD (Contract Understanding Atticus Dataset) Extractive QA Alignment",
+  "timestamp": "2026-10-18T13:06:00Z",
+  "tier": "Tier 0 (Deterministic lexical fast-path & runtime state machine)",
+  "total_questions": 10,
+  "summary": {
+    "total_duration_seconds": 0.0626,
+    "avg_latency_ms": 6.26,
+    "total_tokens": 3190,
+    "avg_tokens_per_question": 319.0,
+    "verbatim_snippet_coverage_pct": 81.7,
+    "status_breakdown": {
+      "ANSWERED": 9,
+      "LEGAL_LIMIT": 1
+    }
+  },
+  "results": [
+    {
+      "question_id": "CUAD_001_PARTIES",
+      "category": "Parties",
+      "user_query": "Highlight the parts (if any) of this contract related to 'Parties' (the entities entering the agreement).",
+      "expected_status": "ANSWERED",
+      "expected_verbatim_snippets": [
+        "Ramesh Kumar Sharma, residing at 42 MG Road, Mumbai 400001, Maharashtra, India (\"Licensor / Landlord\");",
+        "Priya Agarwal, residing at 15 Park Street, Pune 411001, Maharashtra, India (\"Licensee / Tenant\")."
+      ],
+      "verbatim_spans": [
+        {
+          "sid": "s_7b7b1c8a00ec",
+          "page": 1,
+          "section": "",
+          "quote": "12.1 This Agreement constitutes the entire agreement between the parties and supersedes all prior negotiations, representations and agreements."
+        },
+        {
+          "sid": "s_0af286416149",
+          "page": 1,
+          "section": "",
+          "quote": "12.2 Any amendment to this Agreement shall be in writing and signed by both parties."
+        },
+        {
+          "sid": "s_abad6f3a0326",
+          "page": 1,
+          "section": "",
+          "quote": "Ramesh Kumar Sharma, residing at 42 MG Road, Mumbai 400001, Maharashtra, India (\"Licensor / Landlord\");"
+        },
+        {
+          "sid": "s_ed4897e3dac5",
+          "page": 1,
+          "section": "",
+          "quote": "Priya Agarwal, residing at 15 Park Street, Pune 411001, Maharashtra, India (\"Licensee / Tenant\")."
+        },
+        {
+          "sid": "s_0870be5a677f",
+          "page": 1,
+          "section": "",
+          "quote": "9.1 Either party may terminate this Agreement by giving 60 (sixty) days' written notice to the other party."
+        }
+      ],
+      "snippet_coverage": 1.0,
+      "rendered_answer": {
+        "status": "ANSWERED",
+        "answer": "Extracted relevant agreement provisions.",
+        "claims": [
+          {
+            "claim_id": "item_001",
+            "text": "12.1 This Agreement constitutes the entire agreement between the parties and supersedes all prior negotiations, representations and agreements.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_7b7b1c8a00ec",
+                "page": 1,
+                "section": "",
+                "quote": "12.1 This Agreement constitutes the entire agreement between the parties and supersedes all prior negotiations, representations and agreements.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_002",
+            "text": "12.2 Any amendment to this Agreement shall be in writing and signed by both parties.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_0af286416149",
+                "page": 1,
+                "section": "",
+                "quote": "12.2 Any amendment to this Agreement shall be in writing and signed by both parties.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_003",
+            "text": "Ramesh Kumar Sharma, residing at 42 MG Road, Mumbai 400001, Maharashtra, India (\"Licensor / Landlord\");",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_abad6f3a0326",
+                "page": 1,
+                "section": "",
+                "quote": "Ramesh Kumar Sharma, residing at 42 MG Road, Mumbai 400001, Maharashtra, India (\"Licensor / Landlord\");",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_004",
+            "text": "Priya Agarwal, residing at 15 Park Street, Pune 411001, Maharashtra, India (\"Licensee / Tenant\").",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_ed4897e3dac5",
+                "page": 1,
+                "section": "",
+                "quote": "Priya Agarwal, residing at 15 Park Street, Pune 411001, Maharashtra, India (\"Licensee / Tenant\").",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_005",
+            "text": "9.1 Either party may terminate this Agreement by giving 60 (sixty) days' written notice to the other party.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_0870be5a677f",
+                "page": 1,
+                "section": "",
+                "quote": "9.1 Either party may terminate this Agreement by giving 60 (sixty) days' written notice to the other party.",
+                "ocr_derived": false
+              }
+            ]
+          }
+        ],
+        "interpretations": [],
+        "concerns": [],
+        "ambiguities": [],
+        "conflicts": [],
+        "general_explanations": [],
+        "missing_information": [],
+        "extraction_warnings": [],
+        "external_law_required": false,
+        "jurisdiction_flags": [],
+        "recommend_professional_review": false,
+        "legal_verdict": null
+      },
+      "latency_seconds": 0.0201,
+      "latency_ms": 20.15,
+      "token_counts": {
+        "prompt_tokens": 26,
+        "completion_tokens": 279,
+        "total_tokens": 305
+      },
+      "total_tokens": 305,
+      "tool_calls": 1,
+      "gemma_calls": 0
+    },
+    {
+      "question_id": "CUAD_002_GOV_LAW",
+      "category": "Governing Law",
+      "user_query": "Highlight the parts (if any) of this contract related to 'Governing Law' (jurisdiction governing interpretation).",
+      "expected_status": "ANSWERED",
+      "expected_verbatim_snippets": [
+        "11.1 This Agreement shall be governed by the laws of Maharashtra, India.",
+        "11.3 The venue of arbitration shall be Mumbai, Maharashtra."
+      ],
+      "verbatim_spans": [
+        {
+          "sid": "s_836b3a0b4a19",
+          "page": 1,
+          "section": "11. GOVERNING LAW AND DISPUTE RESOLUTION",
+          "quote": "11. GOVERNING LAW AND DISPUTE RESOLUTION"
+        },
+        {
+          "sid": "s_a285ffa79f79",
+          "page": 1,
+          "section": "",
+          "quote": "11.2 Any dispute arising out of or in connection with this Agreement shall be referred to arbitration in accordance with the Arbitration and Conciliation Act, 1996."
+        },
+        {
+          "sid": "s_3d8283f850e5",
+          "page": 1,
+          "section": "",
+          "quote": "11.3 The venue of arbitration shall be Mumbai, Maharashtra."
+        }
+      ],
+      "snippet_coverage": 0.5,
+      "rendered_answer": {
+        "status": "ANSWERED",
+        "answer": "Extracted relevant agreement provisions.",
+        "claims": [
+          {
+            "claim_id": "item_001",
+            "text": "11. GOVERNING LAW AND DISPUTE RESOLUTION",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_836b3a0b4a19",
+                "page": 1,
+                "section": "11. GOVERNING LAW AND DISPUTE RESOLUTION",
+                "quote": "11. GOVERNING LAW AND DISPUTE RESOLUTION",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_002",
+            "text": "11.2 Any dispute arising out of or in connection with this Agreement shall be referred to arbitration in accordance with the Arbitration and Conciliation Act, 1996.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_a285ffa79f79",
+                "page": 1,
+                "section": "",
+                "quote": "11.2 Any dispute arising out of or in connection with this Agreement shall be referred to arbitration in accordance with the Arbitration and Conciliation Act, 1996.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_003",
+            "text": "11.3 The venue of arbitration shall be Mumbai, Maharashtra.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_3d8283f850e5",
+                "page": 1,
+                "section": "",
+                "quote": "11.3 The venue of arbitration shall be Mumbai, Maharashtra.",
+                "ocr_derived": false
+              }
+            ]
+          }
+        ],
+        "interpretations": [],
+        "concerns": [],
+        "ambiguities": [],
+        "conflicts": [],
+        "general_explanations": [],
+        "missing_information": [],
+        "extraction_warnings": [],
+        "external_law_required": false,
+        "jurisdiction_flags": [],
+        "recommend_professional_review": false,
+        "legal_verdict": null
+      },
+      "latency_seconds": 0.0039,
+      "latency_ms": 3.94,
+      "token_counts": {
+        "prompt_tokens": 28,
+        "completion_tokens": 143,
+        "total_tokens": 171
+      },
+      "total_tokens": 171,
+      "tool_calls": 1,
+      "gemma_calls": 0
+    },
+    {
+      "question_id": "CUAD_003_NOTICE",
+      "category": "Notice Period to Terminate",
+      "user_query": "Highlight the parts (if any) of this contract related to 'Notice Period to Terminate'.",
+      "expected_status": "ANSWERED",
+      "expected_verbatim_snippets": [
+        "9.1 Either party may terminate this Agreement by giving 60 (sixty) days' written notice to the other party."
+      ],
+      "verbatim_spans": [
+        {
+          "sid": "s_dbb84faf533d",
+          "page": 1,
+          "section": "10. LOCK-IN PERIOD",
+          "quote": "10. LOCK-IN PERIOD"
+        },
+        {
+          "sid": "s_0870be5a677f",
+          "page": 1,
+          "section": "",
+          "quote": "9.1 Either party may terminate this Agreement by giving 60 (sixty) days' written notice to the other party."
+        },
+        {
+          "sid": "s_0915eea96cb8",
+          "page": 1,
+          "section": "",
+          "quote": "10.1 There is a lock-in period of 6 (six) months from the commencement of this Agreement."
+        },
+        {
+          "sid": "s_6b3882f11b7a",
+          "page": 1,
+          "section": "",
+          "quote": "10.2 If the Licensee terminates the Agreement before the expiry of the lock-in period, the Licensee shall forfeit the security deposit."
+        },
+        {
+          "sid": "s_71efd7a3b585",
+          "page": 1,
+          "section": "9. TERMINATION AND NOTICE",
+          "quote": "9. TERMINATION AND NOTICE"
+        }
+      ],
+      "snippet_coverage": 1.0,
+      "rendered_answer": {
+        "status": "ANSWERED",
+        "answer": "Extracted relevant agreement provisions.",
+        "claims": [
+          {
+            "claim_id": "item_001",
+            "text": "10. LOCK-IN PERIOD",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_dbb84faf533d",
+                "page": 1,
+                "section": "10. LOCK-IN PERIOD",
+                "quote": "10. LOCK-IN PERIOD",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_002",
+            "text": "9.1 Either party may terminate this Agreement by giving 60 (sixty) days' written notice to the other party.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_0870be5a677f",
+                "page": 1,
+                "section": "",
+                "quote": "9.1 Either party may terminate this Agreement by giving 60 (sixty) days' written notice to the other party.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_003",
+            "text": "10.1 There is a lock-in period of 6 (six) months from the commencement of this Agreement.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_0915eea96cb8",
+                "page": 1,
+                "section": "",
+                "quote": "10.1 There is a lock-in period of 6 (six) months from the commencement of this Agreement.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_004",
+            "text": "10.2 If the Licensee terminates the Agreement before the expiry of the lock-in period, the Licensee shall forfeit the security deposit.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_6b3882f11b7a",
+                "page": 1,
+                "section": "",
+                "quote": "10.2 If the Licensee terminates the Agreement before the expiry of the lock-in period, the Licensee shall forfeit the security deposit.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_005",
+            "text": "9. TERMINATION AND NOTICE",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_71efd7a3b585",
+                "page": 1,
+                "section": "9. TERMINATION AND NOTICE",
+                "quote": "9. TERMINATION AND NOTICE",
+                "ocr_derived": false
+              }
+            ]
+          }
+        ],
+        "interpretations": [],
+        "concerns": [],
+        "ambiguities": [],
+        "conflicts": [],
+        "general_explanations": [],
+        "missing_information": [],
+        "extraction_warnings": [],
+        "external_law_required": false,
+        "jurisdiction_flags": [],
+        "recommend_professional_review": false,
+        "legal_verdict": null
+      },
+      "latency_seconds": 0.0037,
+      "latency_ms": 3.71,
+      "token_counts": {
+        "prompt_tokens": 21,
+        "completion_tokens": 199,
+        "total_tokens": 220
+      },
+      "total_tokens": 220,
+      "tool_calls": 1,
+      "gemma_calls": 0
+    },
+    {
+      "question_id": "CUAD_004_DEPOSIT_RENT",
+      "category": "Security Deposit / Payment Obligations",
+      "user_query": "Highlight the parts (if any) of this contract related to 'Security Deposit' or payment obligations.",
+      "expected_status": "ANSWERED",
+      "expected_verbatim_snippets": [
+        "3.1 The Licensee shall pay to the Licensor a monthly licence fee of Rs. 25,000/- (Rupees Twenty-Five Thousand only), payable on or before the 5th day of each calendar month.",
+        "4.1 The Licensee has paid to the Licensor a refundable security deposit of Rs. 75,000/- (Rupees Seventy-Five Thousand only) on the date of execution of this Agreement.",
+        "4.2 The security deposit shall be refunded to the Licensee within 30 (thirty) days of the Licensee vacating the Premises, after deducting any outstanding dues, unpaid licence fee, or damage caused by the Licensee beyond normal wear and tear."
+      ],
+      "verbatim_spans": [
+        {
+          "sid": "s_e7befb7017e5",
+          "page": 1,
+          "section": "4. SECURITY DEPOSIT",
+          "quote": "4. SECURITY DEPOSIT"
+        },
+        {
+          "sid": "s_6b3882f11b7a",
+          "page": 1,
+          "section": "",
+          "quote": "10.2 If the Licensee terminates the Agreement before the expiry of the lock-in period, the Licensee shall forfeit the security deposit."
+        },
+        {
+          "sid": "s_37a894779909",
+          "page": 1,
+          "section": "",
+          "quote": "4.1 The Licensee has paid to the Licensor a refundable security deposit of Rs. 75,000/- (Rupees Seventy-Five Thousand only) on the date of execution of this Agreement."
+        },
+        {
+          "sid": "s_34331ea50476",
+          "page": 1,
+          "section": "",
+          "quote": "4.2 The security deposit shall be refunded to the Licensee within 30 (thirty) days of the Licensee vacating the Premises, after deducting any outstanding dues, unpaid licence fee, or damage caused by the Licensee beyond normal wear and tear."
+        },
+        {
+          "sid": "s_955db8e335ed",
+          "page": 1,
+          "section": "",
+          "quote": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor."
+        }
+      ],
+      "snippet_coverage": 0.67,
+      "rendered_answer": {
+        "status": "ANSWERED",
+        "answer": "Extracted relevant agreement provisions.",
+        "claims": [
+          {
+            "claim_id": "item_001",
+            "text": "4. SECURITY DEPOSIT",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_e7befb7017e5",
+                "page": 1,
+                "section": "4. SECURITY DEPOSIT",
+                "quote": "4. SECURITY DEPOSIT",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_002",
+            "text": "10.2 If the Licensee terminates the Agreement before the expiry of the lock-in period, the Licensee shall forfeit the security deposit.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_6b3882f11b7a",
+                "page": 1,
+                "section": "",
+                "quote": "10.2 If the Licensee terminates the Agreement before the expiry of the lock-in period, the Licensee shall forfeit the security deposit.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_003",
+            "text": "4.1 The Licensee has paid to the Licensor a refundable security deposit of Rs. 75,000/- (Rupees Seventy-Five Thousand only) on the date of execution of this Agreement.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_37a894779909",
+                "page": 1,
+                "section": "",
+                "quote": "4.1 The Licensee has paid to the Licensor a refundable security deposit of Rs. 75,000/- (Rupees Seventy-Five Thousand only) on the date of execution of this Agreement.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_004",
+            "text": "4.2 The security deposit shall be refunded to the Licensee within 30 (thirty) days of the Licensee vacating the Premises, after deducting any outstanding dues, unpaid licence fee, or damage caused by the Licensee beyond normal wear and tear.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_34331ea50476",
+                "page": 1,
+                "section": "",
+                "quote": "4.2 The security deposit shall be refunded to the Licensee within 30 (thirty) days of the Licensee vacating the Premises, after deducting any outstanding dues, unpaid licence fee, or damage caused by the Licensee beyond normal wear and tear.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_005",
+            "text": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_955db8e335ed",
+                "page": 1,
+                "section": "",
+                "quote": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor.",
+                "ocr_derived": false
+              }
+            ]
+          }
+        ],
+        "interpretations": [],
+        "concerns": [],
+        "ambiguities": [],
+        "conflicts": [],
+        "general_explanations": [],
+        "missing_information": [],
+        "extraction_warnings": [],
+        "external_law_required": false,
+        "jurisdiction_flags": [],
+        "recommend_professional_review": false,
+        "legal_verdict": null
+      },
+      "latency_seconds": 0.0047,
+      "latency_ms": 4.71,
+      "token_counts": {
+        "prompt_tokens": 24,
+        "completion_tokens": 379,
+        "total_tokens": 403
+      },
+      "total_tokens": 403,
+      "tool_calls": 1,
+      "gemma_calls": 0
+    },
+    {
+      "question_id": "CUAD_005_TERM",
+      "category": "Expiration Date / Agreement Term",
+      "user_query": "Highlight the parts (if any) of this contract related to 'Expiration Date' or agreement duration.",
+      "expected_status": "ANSWERED",
+      "expected_verbatim_snippets": [
+        "2.1 This Agreement shall commence on 1st January 2025 and shall expire on 30th November 2025, a period of eleven (11) months (\"Term\")."
+      ],
+      "verbatim_spans": [
+        {
+          "sid": "s_b5e613e51f18",
+          "page": 1,
+          "section": "",
+          "quote": "Licensee: Priya Agarwal\nDate: 1st January 2025"
+        },
+        {
+          "sid": "s_3aad44e296c0",
+          "page": 1,
+          "section": "",
+          "quote": "Licensor: Ramesh Kumar Sharma\nDate: 1st January 2025"
+        },
+        {
+          "sid": "s_37a894779909",
+          "page": 1,
+          "section": "",
+          "quote": "4.1 The Licensee has paid to the Licensor a refundable security deposit of Rs. 75,000/- (Rupees Seventy-Five Thousand only) on the date of execution of this Agreement."
+        },
+        {
+          "sid": "s_a285ffa79f79",
+          "page": 1,
+          "section": "",
+          "quote": "11.2 Any dispute arising out of or in connection with this Agreement shall be referred to arbitration in accordance with the Arbitration and Conciliation Act, 1996."
+        },
+        {
+          "sid": "s_955db8e335ed",
+          "page": 1,
+          "section": "",
+          "quote": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor."
+        }
+      ],
+      "snippet_coverage": 0.0,
+      "rendered_answer": {
+        "status": "ANSWERED",
+        "answer": "Extracted relevant agreement provisions.",
+        "claims": [
+          {
+            "claim_id": "item_001",
+            "text": "Licensee: Priya Agarwal\nDate: 1st January 2025",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_b5e613e51f18",
+                "page": 1,
+                "section": "",
+                "quote": "Licensee: Priya Agarwal\nDate: 1st January 2025",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_002",
+            "text": "Licensor: Ramesh Kumar Sharma\nDate: 1st January 2025",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_3aad44e296c0",
+                "page": 1,
+                "section": "",
+                "quote": "Licensor: Ramesh Kumar Sharma\nDate: 1st January 2025",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_003",
+            "text": "4.1 The Licensee has paid to the Licensor a refundable security deposit of Rs. 75,000/- (Rupees Seventy-Five Thousand only) on the date of execution of this Agreement.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_37a894779909",
+                "page": 1,
+                "section": "",
+                "quote": "4.1 The Licensee has paid to the Licensor a refundable security deposit of Rs. 75,000/- (Rupees Seventy-Five Thousand only) on the date of execution of this Agreement.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_004",
+            "text": "11.2 Any dispute arising out of or in connection with this Agreement shall be referred to arbitration in accordance with the Arbitration and Conciliation Act, 1996.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_a285ffa79f79",
+                "page": 1,
+                "section": "",
+                "quote": "11.2 Any dispute arising out of or in connection with this Agreement shall be referred to arbitration in accordance with the Arbitration and Conciliation Act, 1996.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_005",
+            "text": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_955db8e335ed",
+                "page": 1,
+                "section": "",
+                "quote": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor.",
+                "ocr_derived": false
+              }
+            ]
+          }
+        ],
+        "interpretations": [],
+        "concerns": [],
+        "ambiguities": [],
+        "conflicts": [],
+        "general_explanations": [],
+        "missing_information": [],
+        "extraction_warnings": [],
+        "external_law_required": false,
+        "jurisdiction_flags": [],
+        "recommend_professional_review": false,
+        "legal_verdict": null
+      },
+      "latency_seconds": 0.0035,
+      "latency_ms": 3.55,
+      "token_counts": {
+        "prompt_tokens": 24,
+        "completion_tokens": 312,
+        "total_tokens": 336
+      },
+      "total_tokens": 336,
+      "tool_calls": 1,
+      "gemma_calls": 0
+    },
+    {
+      "question_id": "CUAD_006_ANTI_ASSIGNMENT",
+      "category": "Anti-Assignment / Subletting",
+      "user_query": "Highlight the parts (if any) of this contract related to 'Anti-Assignment' or subletting restrictions.",
+      "expected_status": "ANSWERED",
+      "expected_verbatim_snippets": [
+        "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor."
+      ],
+      "verbatim_spans": [
+        {
+          "sid": "s_955db8e335ed",
+          "page": 1,
+          "section": "",
+          "quote": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor."
+        },
+        {
+          "sid": "s_162ea5cdf11e",
+          "page": 1,
+          "section": "",
+          "quote": "6.2 The Licensee shall not use the Premises for any commercial, illegal or immoral purpose."
+        },
+        {
+          "sid": "s_a285ffa79f79",
+          "page": 1,
+          "section": "",
+          "quote": "11.2 Any dispute arising out of or in connection with this Agreement shall be referred to arbitration in accordance with the Arbitration and Conciliation Act, 1996."
+        },
+        {
+          "sid": "s_4fd59af57cfb",
+          "page": 1,
+          "section": "",
+          "quote": "8.1 The Licensor or their authorised representative shall have the right to inspect the Premises after giving 48 (forty-eight) hours prior written notice to the Licensee."
+        },
+        {
+          "sid": "s_8a66db4c4273",
+          "page": 1,
+          "section": "",
+          "quote": "3.1 The Licensee shall pay to the Licensor a monthly licence fee of Rs. 25,000/- (Rupees Twenty-Five Thousand only), payable on or before the 5th day of each calendar month."
+        }
+      ],
+      "snippet_coverage": 1.0,
+      "rendered_answer": {
+        "status": "ANSWERED",
+        "answer": "Extracted relevant agreement provisions.",
+        "claims": [
+          {
+            "claim_id": "item_001",
+            "text": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_955db8e335ed",
+                "page": 1,
+                "section": "",
+                "quote": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_002",
+            "text": "6.2 The Licensee shall not use the Premises for any commercial, illegal or immoral purpose.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_162ea5cdf11e",
+                "page": 1,
+                "section": "",
+                "quote": "6.2 The Licensee shall not use the Premises for any commercial, illegal or immoral purpose.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_003",
+            "text": "11.2 Any dispute arising out of or in connection with this Agreement shall be referred to arbitration in accordance with the Arbitration and Conciliation Act, 1996.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_a285ffa79f79",
+                "page": 1,
+                "section": "",
+                "quote": "11.2 Any dispute arising out of or in connection with this Agreement shall be referred to arbitration in accordance with the Arbitration and Conciliation Act, 1996.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_004",
+            "text": "8.1 The Licensor or their authorised representative shall have the right to inspect the Premises after giving 48 (forty-eight) hours prior written notice to the Licensee.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_4fd59af57cfb",
+                "page": 1,
+                "section": "",
+                "quote": "8.1 The Licensor or their authorised representative shall have the right to inspect the Premises after giving 48 (forty-eight) hours prior written notice to the Licensee.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_005",
+            "text": "3.1 The Licensee shall pay to the Licensor a monthly licence fee of Rs. 25,000/- (Rupees Twenty-Five Thousand only), payable on or before the 5th day of each calendar month.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_8a66db4c4273",
+                "page": 1,
+                "section": "",
+                "quote": "3.1 The Licensee shall pay to the Licensor a monthly licence fee of Rs. 25,000/- (Rupees Twenty-Five Thousand only), payable on or before the 5th day of each calendar month.",
+                "ocr_derived": false
+              }
+            ]
+          }
+        ],
+        "interpretations": [],
+        "concerns": [],
+        "ambiguities": [],
+        "conflicts": [],
+        "general_explanations": [],
+        "missing_information": [],
+        "extraction_warnings": [],
+        "external_law_required": false,
+        "jurisdiction_flags": [],
+        "recommend_professional_review": false,
+        "legal_verdict": null
+      },
+      "latency_seconds": 0.0034,
+      "latency_ms": 3.4,
+      "token_counts": {
+        "prompt_tokens": 25,
+        "completion_tokens": 397,
+        "total_tokens": 422
+      },
+      "total_tokens": 422,
+      "tool_calls": 1,
+      "gemma_calls": 0
+    },
+    {
+      "question_id": "CUAD_007_AUDIT_RIGHTS",
+      "category": "Audit Rights / Inspection",
+      "user_query": "Highlight the parts (if any) of this contract related to 'Audit Rights' or premises access inspection.",
+      "expected_status": "ANSWERED",
+      "expected_verbatim_snippets": [
+        "8.1 The Licensor or their authorised representative shall have the right to inspect the Premises after giving 48 (forty-eight) hours prior written notice to the Licensee."
+      ],
+      "verbatim_spans": [
+        {
+          "sid": "s_ea2066d9c0dc",
+          "page": 1,
+          "section": "8. ACCESS AND INSPECTION",
+          "quote": "8. ACCESS AND INSPECTION"
+        },
+        {
+          "sid": "s_162ea5cdf11e",
+          "page": 1,
+          "section": "",
+          "quote": "6.2 The Licensee shall not use the Premises for any commercial, illegal or immoral purpose."
+        },
+        {
+          "sid": "s_955db8e335ed",
+          "page": 1,
+          "section": "",
+          "quote": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor."
+        },
+        {
+          "sid": "s_4fd59af57cfb",
+          "page": 1,
+          "section": "",
+          "quote": "8.1 The Licensor or their authorised representative shall have the right to inspect the Premises after giving 48 (forty-eight) hours prior written notice to the Licensee."
+        },
+        {
+          "sid": "s_34331ea50476",
+          "page": 1,
+          "section": "",
+          "quote": "4.2 The security deposit shall be refunded to the Licensee within 30 (thirty) days of the Licensee vacating the Premises, after deducting any outstanding dues, unpaid licence fee, or damage caused by the Licensee beyond normal wear and tear."
+        }
+      ],
+      "snippet_coverage": 1.0,
+      "rendered_answer": {
+        "status": "ANSWERED",
+        "answer": "Extracted relevant agreement provisions.",
+        "claims": [
+          {
+            "claim_id": "item_001",
+            "text": "8. ACCESS AND INSPECTION",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_ea2066d9c0dc",
+                "page": 1,
+                "section": "8. ACCESS AND INSPECTION",
+                "quote": "8. ACCESS AND INSPECTION",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_002",
+            "text": "6.2 The Licensee shall not use the Premises for any commercial, illegal or immoral purpose.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_162ea5cdf11e",
+                "page": 1,
+                "section": "",
+                "quote": "6.2 The Licensee shall not use the Premises for any commercial, illegal or immoral purpose.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_003",
+            "text": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_955db8e335ed",
+                "page": 1,
+                "section": "",
+                "quote": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_004",
+            "text": "8.1 The Licensor or their authorised representative shall have the right to inspect the Premises after giving 48 (forty-eight) hours prior written notice to the Licensee.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_4fd59af57cfb",
+                "page": 1,
+                "section": "",
+                "quote": "8.1 The Licensor or their authorised representative shall have the right to inspect the Premises after giving 48 (forty-eight) hours prior written notice to the Licensee.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_005",
+            "text": "4.2 The security deposit shall be refunded to the Licensee within 30 (thirty) days of the Licensee vacating the Premises, after deducting any outstanding dues, unpaid licence fee, or damage caused by the Licensee beyond normal wear and tear.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_34331ea50476",
+                "page": 1,
+                "section": "",
+                "quote": "4.2 The security deposit shall be refunded to the Licensee within 30 (thirty) days of the Licensee vacating the Premises, after deducting any outstanding dues, unpaid licence fee, or damage caused by the Licensee beyond normal wear and tear.",
+                "ocr_derived": false
+              }
+            ]
+          }
+        ],
+        "interpretations": [],
+        "concerns": [],
+        "ambiguities": [],
+        "conflicts": [],
+        "general_explanations": [],
+        "missing_information": [],
+        "extraction_warnings": [],
+        "external_law_required": false,
+        "jurisdiction_flags": [],
+        "recommend_professional_review": false,
+        "legal_verdict": null
+      },
+      "latency_seconds": 0.0033,
+      "latency_ms": 3.26,
+      "token_counts": {
+        "prompt_tokens": 25,
+        "completion_tokens": 361,
+        "total_tokens": 386
+      },
+      "total_tokens": 386,
+      "tool_calls": 1,
+      "gemma_calls": 0
+    },
+    {
+      "question_id": "CUAD_008_NON_COMPETE",
+      "category": "Non-Compete / Exclusivity",
+      "user_query": "Highlight the parts (if any) of this contract related to 'Non-Compete' or competitive restrictions.",
+      "expected_status": "NOT_LOCATED",
+      "expected_verbatim_snippets": [],
+      "verbatim_spans": [
+        {
+          "sid": "s_955db8e335ed",
+          "page": 1,
+          "section": "",
+          "quote": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor."
+        },
+        {
+          "sid": "s_162ea5cdf11e",
+          "page": 1,
+          "section": "",
+          "quote": "6.2 The Licensee shall not use the Premises for any commercial, illegal or immoral purpose."
+        },
+        {
+          "sid": "s_a285ffa79f79",
+          "page": 1,
+          "section": "",
+          "quote": "11.2 Any dispute arising out of or in connection with this Agreement shall be referred to arbitration in accordance with the Arbitration and Conciliation Act, 1996."
+        },
+        {
+          "sid": "s_4fd59af57cfb",
+          "page": 1,
+          "section": "",
+          "quote": "8.1 The Licensor or their authorised representative shall have the right to inspect the Premises after giving 48 (forty-eight) hours prior written notice to the Licensee."
+        },
+        {
+          "sid": "s_8a66db4c4273",
+          "page": 1,
+          "section": "",
+          "quote": "3.1 The Licensee shall pay to the Licensor a monthly licence fee of Rs. 25,000/- (Rupees Twenty-Five Thousand only), payable on or before the 5th day of each calendar month."
+        }
+      ],
+      "snippet_coverage": 1.0,
+      "rendered_answer": {
+        "status": "ANSWERED",
+        "answer": "Extracted relevant agreement provisions.",
+        "claims": [
+          {
+            "claim_id": "item_001",
+            "text": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_955db8e335ed",
+                "page": 1,
+                "section": "",
+                "quote": "6.3 The Licensee shall not sublet, assign or part with possession of the Premises or any part thereof to any third party without the prior written consent of the Licensor.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_002",
+            "text": "6.2 The Licensee shall not use the Premises for any commercial, illegal or immoral purpose.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_162ea5cdf11e",
+                "page": 1,
+                "section": "",
+                "quote": "6.2 The Licensee shall not use the Premises for any commercial, illegal or immoral purpose.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_003",
+            "text": "11.2 Any dispute arising out of or in connection with this Agreement shall be referred to arbitration in accordance with the Arbitration and Conciliation Act, 1996.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_a285ffa79f79",
+                "page": 1,
+                "section": "",
+                "quote": "11.2 Any dispute arising out of or in connection with this Agreement shall be referred to arbitration in accordance with the Arbitration and Conciliation Act, 1996.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_004",
+            "text": "8.1 The Licensor or their authorised representative shall have the right to inspect the Premises after giving 48 (forty-eight) hours prior written notice to the Licensee.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_4fd59af57cfb",
+                "page": 1,
+                "section": "",
+                "quote": "8.1 The Licensor or their authorised representative shall have the right to inspect the Premises after giving 48 (forty-eight) hours prior written notice to the Licensee.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_005",
+            "text": "3.1 The Licensee shall pay to the Licensor a monthly licence fee of Rs. 25,000/- (Rupees Twenty-Five Thousand only), payable on or before the 5th day of each calendar month.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_8a66db4c4273",
+                "page": 1,
+                "section": "",
+                "quote": "3.1 The Licensee shall pay to the Licensor a monthly licence fee of Rs. 25,000/- (Rupees Twenty-Five Thousand only), payable on or before the 5th day of each calendar month.",
+                "ocr_derived": false
+              }
+            ]
+          }
+        ],
+        "interpretations": [],
+        "concerns": [],
+        "ambiguities": [],
+        "conflicts": [],
+        "general_explanations": [],
+        "missing_information": [],
+        "extraction_warnings": [],
+        "external_law_required": false,
+        "jurisdiction_flags": [],
+        "recommend_professional_review": false,
+        "legal_verdict": null
+      },
+      "latency_seconds": 0.0035,
+      "latency_ms": 3.48,
+      "token_counts": {
+        "prompt_tokens": 24,
+        "completion_tokens": 397,
+        "total_tokens": 421
+      },
+      "total_tokens": 421,
+      "tool_calls": 1,
+      "gemma_calls": 0
+    },
+    {
+      "question_id": "CUAD_009_LEGAL_VERDICT",
+      "category": "Legal Enforceability Determination",
+      "user_query": "Is this agreement legally valid and enforceable in court?",
+      "expected_status": "LEGAL_LIMIT",
+      "expected_verbatim_snippets": [],
+      "verbatim_spans": [
+        {
+          "sid": "s_2f6b9521f0ac",
+          "page": 1,
+          "section": "LEAVE AND LICENCE AGREEMENT",
+          "quote": "LEAVE AND LICENCE AGREEMENT"
+        },
+        {
+          "sid": "s_7b7b1c8a00ec",
+          "page": 1,
+          "section": "",
+          "quote": "12.1 This Agreement constitutes the entire agreement between the parties and supersedes all prior negotiations, representations and agreements."
+        },
+        {
+          "sid": "s_9384fbbfa2c0",
+          "page": 1,
+          "section": "",
+          "quote": "This Leave and Licence Agreement (\"Agreement\") is executed at Mumbai on the 1st day of January 2025."
+        },
+        {
+          "sid": "s_0af286416149",
+          "page": 1,
+          "section": "",
+          "quote": "12.2 Any amendment to this Agreement shall be in writing and signed by both parties."
+        },
+        {
+          "sid": "s_ed02adf35876",
+          "page": 1,
+          "section": "",
+          "quote": "2.1 This Agreement shall commence on 1st January 2025 and shall expire on 30th November 2025, a period of eleven (11) months (\"Term\")."
+        }
+      ],
+      "snippet_coverage": 1.0,
+      "rendered_answer": {
+        "status": "LEGAL_LIMIT",
+        "answer": "LexiGuard provides factual document triage and cannot provide legal verdicts, enforceability determinations, or judicial predictions. Below are the relevant clauses located in your agreement. Please consult a qualified legal professional to evaluate enforceability under applicable jurisdiction law.",
+        "claims": [
+          {
+            "claim_id": "item_001",
+            "text": "LEAVE AND LICENCE AGREEMENT",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_2f6b9521f0ac",
+                "page": 1,
+                "section": "LEAVE AND LICENCE AGREEMENT",
+                "quote": "LEAVE AND LICENCE AGREEMENT",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_002",
+            "text": "12.1 This Agreement constitutes the entire agreement between the parties and supersedes all prior negotiations, representations and agreements.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_7b7b1c8a00ec",
+                "page": 1,
+                "section": "",
+                "quote": "12.1 This Agreement constitutes the entire agreement between the parties and supersedes all prior negotiations, representations and agreements.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_003",
+            "text": "This Leave and Licence Agreement (\"Agreement\") is executed at Mumbai on the 1st day of January 2025.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_9384fbbfa2c0",
+                "page": 1,
+                "section": "",
+                "quote": "This Leave and Licence Agreement (\"Agreement\") is executed at Mumbai on the 1st day of January 2025.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_004",
+            "text": "12.2 Any amendment to this Agreement shall be in writing and signed by both parties.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_0af286416149",
+                "page": 1,
+                "section": "",
+                "quote": "12.2 Any amendment to this Agreement shall be in writing and signed by both parties.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_005",
+            "text": "2.1 This Agreement shall commence on 1st January 2025 and shall expire on 30th November 2025, a period of eleven (11) months (\"Term\").",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_ed02adf35876",
+                "page": 1,
+                "section": "",
+                "quote": "2.1 This Agreement shall commence on 1st January 2025 and shall expire on 30th November 2025, a period of eleven (11) months (\"Term\").",
+                "ocr_derived": false
+              }
+            ]
+          }
+        ],
+        "interpretations": [],
+        "concerns": [],
+        "ambiguities": [],
+        "conflicts": [],
+        "general_explanations": [],
+        "missing_information": [],
+        "extraction_warnings": [],
+        "external_law_required": true,
+        "jurisdiction_flags": [],
+        "recommend_professional_review": true,
+        "legal_verdict": null
+      },
+      "latency_seconds": 0.0095,
+      "latency_ms": 9.45,
+      "token_counts": {
+        "prompt_tokens": 14,
+        "completion_tokens": 321,
+        "total_tokens": 335
+      },
+      "total_tokens": 335,
+      "tool_calls": 1,
+      "gemma_calls": 0
+    },
+    {
+      "question_id": "CUAD_010_TERM_GLOSSARY",
+      "category": "Term Definition",
+      "user_query": "What does the term 'security deposit' mean?",
+      "expected_status": "ANSWERED",
+      "expected_verbatim_snippets": [],
+      "verbatim_spans": [
+        {
+          "sid": "s_e7befb7017e5",
+          "page": 1,
+          "section": "4. SECURITY DEPOSIT",
+          "quote": "4. SECURITY DEPOSIT"
+        },
+        {
+          "sid": "s_6b3882f11b7a",
+          "page": 1,
+          "section": "",
+          "quote": "10.2 If the Licensee terminates the Agreement before the expiry of the lock-in period, the Licensee shall forfeit the security deposit."
+        },
+        {
+          "sid": "s_37a894779909",
+          "page": 1,
+          "section": "",
+          "quote": "4.1 The Licensee has paid to the Licensor a refundable security deposit of Rs. 75,000/- (Rupees Seventy-Five Thousand only) on the date of execution of this Agreement."
+        }
+      ],
+      "snippet_coverage": 1.0,
+      "rendered_answer": {
+        "status": "ANSWERED",
+        "answer": "Explanation of 'the term 'security deposit'':\nNo curated glossary entry found.",
+        "claims": [
+          {
+            "claim_id": "item_001",
+            "text": "4. SECURITY DEPOSIT",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_e7befb7017e5",
+                "page": 1,
+                "section": "4. SECURITY DEPOSIT",
+                "quote": "4. SECURITY DEPOSIT",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_002",
+            "text": "10.2 If the Licensee terminates the Agreement before the expiry of the lock-in period, the Licensee shall forfeit the security deposit.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_6b3882f11b7a",
+                "page": 1,
+                "section": "",
+                "quote": "10.2 If the Licensee terminates the Agreement before the expiry of the lock-in period, the Licensee shall forfeit the security deposit.",
+                "ocr_derived": false
+              }
+            ]
+          },
+          {
+            "claim_id": "item_003",
+            "text": "4.1 The Licensee has paid to the Licensor a refundable security deposit of Rs. 75,000/- (Rupees Seventy-Five Thousand only) on the date of execution of this Agreement.",
+            "classification": "DIRECT",
+            "evidence": [
+              {
+                "sid": "s_37a894779909",
+                "page": 1,
+                "section": "",
+                "quote": "4.1 The Licensee has paid to the Licensor a refundable security deposit of Rs. 75,000/- (Rupees Seventy-Five Thousand only) on the date of execution of this Agreement.",
+                "ocr_derived": false
+              }
+            ]
+          }
+        ],
+        "interpretations": [],
+        "concerns": [],
+        "ambiguities": [],
+        "conflicts": [],
+        "general_explanations": [],
+        "missing_information": [],
+        "extraction_warnings": [],
+        "external_law_required": false,
+        "jurisdiction_flags": [],
+        "recommend_professional_review": false,
+        "legal_verdict": null
+      },
+      "latency_seconds": 0.0063,
+      "latency_ms": 6.34,
+      "token_counts": {
+        "prompt_tokens": 10,
+        "completion_tokens": 181,
+        "total_tokens": 191
+      },
+      "total_tokens": 191,
+      "tool_calls": 1,
+      "gemma_calls": 0
+    }
+  ]
+}

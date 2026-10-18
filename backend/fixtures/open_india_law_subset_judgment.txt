@@ -1,0 +1,34 @@
+IN THE SUPREME COURT OF INDIA
+CIVIL APPELLATE JURISDICTION
+
+Civil Appeal No. 341 of 1955
+Decided on: May 19, 1959
+
+Bench: S.K. Das, A.K. Sarkar, K. Subba Rao, JJ.
+Citation: AIR 1959 SC 1262 : [1960] 1 SCR 368
+
+Source: Open India Law Dataset (vaquill/open-india-law)
+Subject: Determination of whether an agreement constitutes a Lease under Section 105 of the Transfer of Property Act, 1882, or a Licence under Section 52 of the Indian Easements Act, 1882.
+
+JUDGMENT:
+SUBBA RAO, J. —
+
+1. This appeal by special leave is directed against the judgment and order of the High Court of Punjab at Simla in Civil Revision No. 288 of 1951, confirming the order of the Senior Subordinate Judge, Delhi, holding that the respondent was a tenant of the appellant in respect of the premises in dispute and that an application for determination of standard rent under the Delhi and Ajmer-Merwara Rent Control Act, 1947, was maintainable.
+
+2. The appellant, the Associated Hotels of India Ltd., is the proprietor of the Hotel Imperial, New Delhi. The respondent, R.N. Kapoor, was in occupation of two rooms in the Hotel Imperial known as the Ladies and Gents Cloak Rooms, where he was carrying on the business of a hairdresser and beauty salon. The agreement executed between the parties on May 1, 1949, was described as a "licence deed". The agreement provided for the payment of a monthly sum of Rs. 800 described as a "licence fee", and stipulated that the legal possession of the rooms shall remain with the appellant company.
+
+3. The respondent applied under Section 7(1) of the Rent Control Act to the Rent Controller, Delhi, for fixing the standard rent of the premises. The appellant contested the petition on the ground that the respondent was not a tenant but only a licensee, and therefore the provisions of the Rent Control Act had no application.
+
+4. The crucial question that arises for consideration is whether the agreement between the parties created a lease or a licence. If it is a lease, the respondent is a tenant entitled to the protection of the Rent Control Act; if it is a licence, the application is not maintainable.
+
+5. The difference between a lease and a licence is marked. Section 105 of the Transfer of Property Act, 1882, defines a lease of immovable property as a transfer of a right to enjoy such property made for a certain time in consideration of a price paid or promised. Section 52 of the Indian Easements Act, 1882, defines a licence as a grant of a right to do, or continue to do, in or upon the immovable property of the grantor, something which would, in the absence of such right, be unlawful, and such right does not amount to an easement or an interest in the property.
+
+6. The following principles may be taken as well established:
+(1) To ascertain whether a document creates a licence or lease, the substance of the document must be preferred to the form;
+(2) The real test is the intention of the parties — whether they intended to create a lease or a licence;
+(3) If the document creates an interest in the property, it is a lease; but if it only permits another to make use of the property, of which the legal possession continues with the owner, it is a licence; and
+(4) If under the document a party gets exclusive possession of the property, he is prima facie to be considered a tenant; but circumstances may be established which negative the intention to create a lease.
+
+7. Applying these tests to the document in question, it is clear that though the document is described as a licence deed, the terms thereof indicate that exclusive possession of the rooms was transferred to the respondent for carrying on his business. The reservation of the right of the landlord to inspect the rooms or clean them does not derogate from the grant of exclusive possession. The parties intended to create a relationship of landlord and tenant.
+
+8. We therefore hold that the document in question created a lease and not a licence. The appeal is accordingly dismissed with costs.

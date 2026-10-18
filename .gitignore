@@ -1,0 +1,66 @@
+# LexiGuard Root .gitignore
+
+# Dependencies
+**/node_modules/
+node_modules/
+.pnpm-store/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# Testing & Cache
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.tsbuildinfo
+.vite/
+*.log
+
+# Runtime Data (Never commit user document data)
+data/docs/
+data/eval_temp/
+backend/data/docs/
+backend/data/eval_temp/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Secrets & Keys
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+.secrets/
+
+# Model Weights
+*.gguf
+*.bin
+*.ggml
+*.pt
+*.pth
+*.safetensors
+*.ckpt
+models/
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Duplicate backend/frontend source (tracked in frontend/)
+backend/frontend/

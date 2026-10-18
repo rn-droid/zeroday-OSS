@@ -1,0 +1,82 @@
+# LexiGuard Statutory Context Lexicon — India Code (indiacode.gov.in)
+# Source: India Code digital repository of Central and State Acts
+# Purpose: Provide statutory context and section-level citations for Indian tenancy, lease, and licence matters.
+# Caveat: Legislation is not a contract. Information is provided for reference only, not as legal advice.
+
+version: 1
+source: "India Code (indiacode.gov.in)"
+disclaimer: "Statutory citations and summaries are derived from Indian legislation via India Code (indiacode.gov.in). Legislation is not a contract and statutory provisions vary by state. This does not constitute legal advice."
+
+statutes:
+  transfer_of_property_act_1882:
+    act_name: "Transfer of Property Act, 1882"
+    act_number: "Act No. 4 of 1882"
+    source_url: "https://www.indiacode.gov.in/handle/123456789/2338"
+    sections:
+      section_105:
+        section_number: "Section 105"
+        heading: "Lease defined"
+        statutory_summary: "A lease of immoveable property is a transfer of a right to enjoy such property, made for a certain time, express or implied, or in perpetuity, in consideration of a price paid or promised, or of money, a share of crops, service or any other thing of value, to be rendered periodically or on specified occasions to the transferor by the transferee, who accepts the transfer on such terms."
+        keywords: ["lease", "lessor", "lessee", "rent", "premium", "tenancy", "transfer of right to enjoy"]
+      section_106:
+        section_number: "Section 106"
+        heading: "Duration of certain leases in absence of written contract or local usage"
+        statutory_summary: "In the absence of a contract or local law or usage to the contrary, a lease of immovable property for any purpose other than agriculture or manufacturing shall be deemed to be a lease from month to month, terminable, on the part of either lessor or lessee, by fifteen days' notice expiring with the end of a month of the tenancy."
+        keywords: ["notice period", "statutory notice", "month to month", "fifteen days notice", "15 days", "termination notice", "default notice"]
+      section_107:
+        section_number: "Section 107"
+        heading: "Leases how made"
+        statutory_summary: "A lease of immoveable property from year to year, or for any term exceeding one year, or reserving a yearly rent, can be made only by a registered instrument. All other leases of immoveable property may be made either by a registered instrument or by oral agreement accompanied by delivery of possession."
+        keywords: ["registration", "registered instrument", "one year", "eleven months", "11 months", "stamp duty"]
+      section_108:
+        section_number: "Section 108"
+        heading: "Rights and liabilities of lessor and lessee"
+        statutory_summary: "Outlines lessor obligations (disclosure of latent material defects, quiet possession) and lessee obligations (payment of rent, maintenance of property in proper condition, reasonable wear and tear, obligation not to commit waste)."
+        keywords: ["repairs", "maintenance", "quiet enjoyment", "latent defects", "wear and tear", "waste"]
+      section_111:
+        section_number: "Section 111"
+        heading: "Determination of lease"
+        statutory_summary: "A lease of immovable property determines: by efflux of the time limited thereby; by expiry of a notice to determine the lease, or to quit, or of intention to quit; or by forfeiture for breach of an express condition."
+        keywords: ["determination", "expiry", "termination", "forfeiture", "efflux of time", "breach of condition"]
+
+  indian_easements_act_1882:
+    act_name: "Indian Easements Act, 1882"
+    act_number: "Act No. 5 of 1882"
+    source_url: "https://www.indiacode.gov.in/handle/123456789/2315"
+    sections:
+      section_52:
+        section_number: "Section 52"
+        heading: "License defined"
+        statutory_summary: "Where one person grants to another, or to a definite number of other persons, a right to do, or continue to do, in or upon the immovable property of the grantor, something which would, in the absence of such right, be unlawful, and such right does not amount to an easement or an interest in the property, the right is called a license."
+        keywords: ["leave and licence", "leave and license", "license", "licence", "licensor", "licensee", "interest in property"]
+      section_60:
+        section_number: "Section 60"
+        heading: "License when revocable"
+        statutory_summary: "A license may be revoked by the grantor, unless it is coupled with a transfer of property and such transfer is in force, or the licensee, acting upon the license, has executed a work of a permanent character and incurred expenses in the execution."
+        keywords: ["revocation of license", "revocable", "cancellation", "lock-in"]
+
+  registration_act_1908:
+    act_name: "Registration Act, 1908"
+    act_number: "Act No. 16 of 1908"
+    source_url: "https://www.indiacode.gov.in/handle/123456789/2270"
+    sections:
+      section_17:
+        section_number: "Section 17(1)(d)"
+        heading: "Documents of which registration is compulsory"
+        statutory_summary: "Leases of immovable property from year to year, or for any term exceeding one year, or reserving a yearly rent, are compulsorily registrable."
+        keywords: ["compulsory registration", "registration act", "unregistered agreement", "admissibility"]
+
+  model_tenancy_act_2021:
+    act_name: "Model Tenancy Act, 2021 (Guideline framework for State legislation)"
+    source_url: "https://mohua.gov.in/upload/uploadfiles/files/Model_Tenancy_Act_English.pdf"
+    sections:
+      section_10:
+        section_number: "Section 10"
+        heading: "Security deposit"
+        statutory_summary: "Security deposit for residential premises shall not exceed two months' rent, to be refunded to the tenant upon handing over vacant possession of the premises after making lawful deductions, if any."
+        keywords: ["security deposit cap", "two months rent", "deposit limit", "refund timeline"]
+      section_21:
+        section_number: "Section 21"
+        heading: "Repossession of premises by landlord"
+        statutory_summary: "Specifies strict grounds on which a rent authority or court may order recovery of possession, including non-payment of rent, failure to vacate after agreed period, or misuse of premises."
+        keywords: ["eviction", "repossession", "grounds for eviction", "recovery of possession"]
