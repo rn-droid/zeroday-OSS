@@ -15,6 +15,7 @@ class Route(str, Enum):
     FACT_LOOKUP = "FACT_LOOKUP"
     MULTI_CLAUSE_ANALYSIS = "MULTI_CLAUSE_ANALYSIS"
     DOCUMENT_MAP = "DOCUMENT_MAP"
+    DOCUMENT_SUMMARY = "DOCUMENT_SUMMARY"
     REVIEW_SCAN = "REVIEW_SCAN"
     DOCUMENT_SILENCE_CHECK = "DOCUMENT_SILENCE_CHECK"
     AMBIGUITY_OR_CONFLICT = "AMBIGUITY_OR_CONFLICT"
@@ -65,6 +66,17 @@ _MAP_PATTERNS = [
     re.compile(r"\b(?:list\s+all\s+(?:the\s+)?(?:clauses|sections|headings))\b", re.IGNORECASE),
 ]
 
+# Summary and overview patterns
+_SUMMARY_PATTERNS = [
+    re.compile(r"\b(?:summar(?:i[sz]e|y|ies|i[sz]ation)?|summery|tldr|synopsis|recap)\b", re.IGNORECASE),
+    re.compile(r"\b(?:what\s+is\s+this\s+(?:contract|agreement|document)\s+about)\b", re.IGNORECASE),
+    re.compile(r"\b(?:what\s+does\s+this\s+(?:contract|agreement|document)\s+say)\b", re.IGNORECASE),
+    re.compile(r"^\s*(?:can\s+you\s+)?explain\s+(?:this\s+)?(?:contract|agreement|document)\s*\??\s*$", re.IGNORECASE),
+    re.compile(r"^\s*(?:tell\s+me\s+about|describe)\s+(?:this\s+)?(?:contract|agreement|document)\s*\??\s*$", re.IGNORECASE),
+    re.compile(r"\bkey\s+(?:points|terms|clauses|takeaways|provisions)\b", re.IGNORECASE),
+    re.compile(r"^\s*(?:give\s+(?:me\s+)?(?:an\s+)?)?overview\s*\??\s*$", re.IGNORECASE),
+]
+
 
 def route_query(question: str) -> RouteDecision:
     """
@@ -97,7 +109,32 @@ def route_query(question: str) -> RouteDecision:
                 is_limitation=True,
             )
 
-    # 3. Document Map
+    # 3. Document Summary & Overview (Gemma / Lexical high-level understanding)
+    for pattern in _SUMMARY_PATTERNS:
+        if pattern.search(clean_q):
+            # Check if a specific topic was requested (e.g., "summarize rent")
+            lower_clean = clean_q.lower()
+            topic_matched = None
+            for top_candidate in ("notice", "rent", "deposit", "parties", "maintenance", "lock-in", "penalties", "disputes"):
+                if re.search(r"\b" + re.escape(top_candidate) + r"\b", lower_clean):
+                    topic_matched = top_candidate.replace("-", "_")
+                    break
+
+            if topic_matched:
+                return RouteDecision(
+                    route=Route.FACT_LOOKUP,
+                    reason=f"Topic-specific summary requested for '{topic_matched}'.",
+                    target_topic=topic_matched,
+                    is_limitation=False,
+                )
+
+            return RouteDecision(
+                route=Route.DOCUMENT_SUMMARY,
+                reason="Question requests comprehensive summary of the agreement.",
+                is_limitation=False,
+            )
+
+    # 4. Document Map
     for pattern in _MAP_PATTERNS:
         if pattern.search(clean_q):
             return RouteDecision(

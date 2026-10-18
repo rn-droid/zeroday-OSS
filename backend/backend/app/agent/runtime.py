@@ -234,6 +234,149 @@ class BoundedRuntime:
                     points=[],
                 )
 
+        if decision.route == Route.DOCUMENT_SUMMARY:
+            # 1. Gather key provisions across agreement: recitals (page 1) + core topics
+            recital_rows = self.con.execute(
+                """
+                SELECT sid, page_num, section, sentence_text
+                FROM sentences
+                WHERE page_num = 1
+                ORDER BY start_offset
+                LIMIT 5
+                """
+            ).fetchall()
+
+            summary_hits: List[Dict[str, Any]] = [
+                {
+                    "sid": r["sid"],
+                    "page_num": r["page_num"],
+                    "section": r["section"],
+                    "sentence_text": r["sentence_text"],
+                }
+                for r in recital_rows
+            ]
+
+            # Query core topics: term, rent, deposit, notice, restrictions, disputes
+            core_topics = ["term", "rent", "deposit", "notice", "restrictions", "disputes"]
+            for top in core_topics:
+                if self.tool_calls < MAX_TOOL_CALLS:
+                    self.tool_calls += 1
+                    top_hits = self.tools.search_document(query="", topic=top)
+                    for th in top_hits[:2]:
+                        if not any(sh["sid"] == th["sid"] for sh in summary_hits):
+                            summary_hits.append(th)
+
+            # Record approved sids
+            for sh in summary_hits:
+                self.approved_sids.add(sh["sid"])
+
+            # 2. If provider is available, use Gemma to synthesize an intelligent, structured summary
+            if self.provider and self.gemma_calls < MAX_GEMMA_CALLS:
+                nonce = secrets.token_hex(6)
+                evidence_lines = [
+                    f"[{h['sid']}] (Section: {h['section']}, Page: {h['page_num']}) {h['sentence_text']}"
+                    for h in summary_hits
+                ]
+                evidence_block = (
+                    f"<<EVIDENCE-{nonce}>>\n"
+                    + "\n".join(evidence_lines)
+                    + f"\n<<END-EVIDENCE-{nonce}>>"
+                )
+                full_doc_text = _get_full_document_text(self.con)
+                topics = _load_topics()
+                glossary = _load_glossary()
+                ref_context = _build_reference_context(question, glossary, topics)
+
+                system_prompt = (
+                    "You are LexiGuard, a private legal-document triage assistant.\n"
+                    "The user is asking for a comprehensive summary of this agreement.\n"
+                    "Carefully examine the full agreement text and the retrieved evidence passages.\n\n"
+                    "Rules for Summary:\n"
+                    "1. Propose clear, accurate points summarizing key aspects of the agreement:\n"
+                    "   - Agreement type, date, and Parties (Licensor / Landlord and Licensee / Tenant)\n"
+                    "   - Premises / Property description and location\n"
+                    "   - Term & Duration (commencement and expiry dates)\n"
+                    "   - Financial terms (Monthly rent/fee, due dates, payment mode)\n"
+                    "   - Security Deposit amount, refund timeline, and deduction conditions\n"
+                    "   - Termination rules (notice period days, lock-in period)\n"
+                    "   - Major restrictions (subletting, alterations, pet policies)\n"
+                    "   - Dispute resolution mechanism and governing jurisdiction\n"
+                    "2. Set kind to 'STATED' or 'RESTATEMENT'.\n"
+                    "3. Set sids to the exact sentence IDs from the evidence block supporting each point.\n"
+                    "4. NEVER invent dates, numbers, or amounts. Everything must be grounded in the text.\n"
+                    "5. DO NOT provide legal advice or legal enforceability judgments.\n"
+                )
+                if ref_context:
+                    system_prompt += f"\n## Reference Context (terminology guide)\n{ref_context}\n"
+
+                user_prompt = (
+                    f"Question: Please provide a clear, comprehensive summary of this agreement.\n\n"
+                    f"Retrieved Key Provisions:\n{evidence_block}\n\n"
+                    f"Full Agreement Text:\n{full_doc_text}"
+                )
+
+                self.gemma_calls += 1
+                try:
+                    model_answer: ModelAnswer = self.provider.generate_structured(
+                        system_prompt=system_prompt,
+                        user_prompt=user_prompt,
+                        response_schema=ModelAnswer,
+                    )
+                except Exception as exc:
+                    logger.warning("Local LLM provider error (%s); falling back to extractive summary.", exc)
+                    model_answer = ModelAnswer(points=[])
+
+                valid_points, _ = validate_provenance(model_answer, self.approved_sids)
+                verified_points: List[ModelPoint] = []
+                for pt in valid_points:
+                    source_texts = []
+                    for sid in pt.sids:
+                        row = self.con.execute("SELECT sentence_text FROM sentences WHERE sid = ?", (sid,)).fetchone()
+                        if row:
+                            source_texts.append(row["sentence_text"])
+                    if pt.kind.upper() == "RESTATEMENT":
+                        ok_lit, _ = validate_restatement(pt, source_texts)
+                        if not ok_lit:
+                            continue
+                    ok_scan, _ = scan_verdict(pt.text, kind=pt.kind, cited_sources=source_texts)
+                    if not ok_scan:
+                        continue
+                    verified_points.append(pt)
+
+                if verified_points:
+                    summary_text = (
+                        "Executive Summary: This agreement establishes a residential tenancy / leave-and-licence "
+                        "between the parties. Key terms including parties, premises, term duration, monthly rent, "
+                        "security deposit, termination notice, and dispute resolution are detailed below with source citations."
+                    )
+                    return render_response(
+                        con=self.con,
+                        status="ANSWERED",
+                        summary_answer=summary_text,
+                        points=verified_points,
+                    )
+
+            # Extractive fallback if model provider is omitted or failed
+            points = [
+                ModelPoint(
+                    point_id=f"p_{i}",
+                    kind="STATED",
+                    text=h["sentence_text"],
+                    sids=[h["sid"]],
+                )
+                for i, h in enumerate(summary_hits[:8])
+            ]
+            summary_text = (
+                "Executive Summary: Key provisions extracted across parties, term, rent, security deposit, "
+                "notice period, and dispute resolution are presented below with verbatim citations."
+            )
+            return render_response(
+                con=self.con,
+                status="ANSWERED",
+                summary_answer=summary_text,
+                points=points,
+            )
+
         if decision.route == Route.DOCUMENT_SILENCE_CHECK:
             topic = decision.target_topic or question
             if self.tool_calls < MAX_TOOL_CALLS:

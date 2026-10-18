@@ -271,3 +271,41 @@ def test_runtime_fast_path(runtime_db: sqlite3.Connection):
     assert result.claims[0].evidence[0].quote == "The tenant shall pay a monthly rent of Rs. 25,000 to the landlord."
     assert result.claims[0].evidence[0].page == 1
     assert result.claims[0].evidence[0].section == "1. Rent"
+
+
+def test_router_summary_queries():
+    """Verify router identifies generic summary queries and topic-specific summaries."""
+    summary_queries = [
+        "summarise",
+        "summary",
+        "summery",
+        "give me a summary",
+        "can you summarize this document?",
+        "what is this agreement about",
+        "what does this contract say",
+        "overview",
+    ]
+    for q in summary_queries:
+        dec = route_query(q)
+        assert dec.route == Route.DOCUMENT_SUMMARY, f"Query '{q}' did not route to DOCUMENT_SUMMARY, got {dec.route}"
+
+    # Topic-specific summary should route to FACT_LOOKUP
+    topic_dec = route_query("summarize the notice period")
+    assert topic_dec.route == Route.FACT_LOOKUP
+    assert topic_dec.target_topic == "notice"
+
+
+def test_runtime_document_summary(runtime_db: sqlite3.Connection):
+    """Verify BoundedRuntime produces structured summary with citations and null legal_verdict."""
+    runtime = BoundedRuntime(con=runtime_db, provider=None)
+    result = runtime.run("summarise")
+
+    assert result.status == "ANSWERED"
+    assert result.legal_verdict is None
+    assert len(result.claims) > 0
+    assert "Executive Summary" in result.answer
+    # Must have evidence attached
+    for claim in result.claims:
+        assert len(claim.evidence) > 0
+        assert claim.evidence[0].page in (1, 2)
+

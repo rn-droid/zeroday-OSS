@@ -243,7 +243,8 @@ def search_lexical(
         "what", "is", "the", "are", "was", "were", "when", "where", "how", "why", "who",
         "does", "do", "did", "can", "could", "will", "would", "shall", "should", "a", "an",
         "of", "to", "in", "on", "for", "at", "by", "with", "from", "about", "tell", "me", "please",
-        "highlight", "parts", "part", "contract", "related", "any", "this", "if"
+        "highlight", "parts", "part", "contract", "related", "any", "this", "if",
+        "summarize", "summarise", "summary", "summery", "explain", "overview", "give", "show", "describe",
     ])
     if query.strip():
         # Prioritize quoted phrases (e.g. 'Parties', 'Governing Law', 'Notice Period to Terminate')
